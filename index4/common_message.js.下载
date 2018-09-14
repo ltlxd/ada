@@ -1,0 +1,29 @@
+function by_flag_get_content_url(s) {
+	var start, end, cont, url, data;
+	start = s.indexOf('####') + 4;
+	end = s.indexOf('####', start);
+	cont = s.slice(start, end);
+	url = s.slice(end + 4, s.indexOf('####', end + 1));
+	url = url.split("|").join(":");
+	data = [cont, url];
+	return data;
+}
+
+function set_Time_clear_popup(param) {
+	setTimeout(function() {
+		popup.close();
+		if(param && param.length > 1) {
+			window.location.href = param;
+		}
+	}, '1500');
+}
+
+function ajax_show_message(data) {
+	var str = wqXml(data);
+
+	obj = by_flag_get_content_url(str);
+	var html = "<div class=\"ass_fl\"><dt id=\"messagetext\"><p>" + obj[0] + "</p></dt></div>";
+	popup.open(html);
+	set_Time_clear_popup(obj[1]);
+
+}

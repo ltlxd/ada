@@ -1,0 +1,261 @@
+
+$(function() {
+	pass_phone_button_is_disabled(wq_btn, wq_input);
+
+	$(wq_btn).click(function() {
+		var phone = $(wq_input).val();
+		if(is_seccode == 1) {
+			wq_smslogin_showwindow('wq_smslogin', 'plugin.php?id=wq_smslogin&mod=sendcode&module=' + module + '&phone=' + phone + '&mobile=2', 'get');
+		} else {
+			var obj = $(this);
+			popup.open('<img src="' + IMGDIR + '/imageloading.gif">');
+			$.ajax({
+				type: 'post',
+				url: obj.attr('data-url'),
+				data: {inajax: 1, module: module, formhash: formhash, phone: phone},
+				dataType: 'html',
+			}).success(function(s) {
+				popup.close();
+				var wq = str = wqXml(s);
+				wq = wq_smslogin_replace_js(wq);
+				var errcode = removeHTMLTag(wq);
+				var msg = by_flag_get_content_url(wq);
+				if(errcode == 1 || msg[0] == 1) {
+					curcount = count;
+					$(wq_btn).text(curcount + " " + seconds);
+					InterValObj = window.setInterval(SetRemainTime, 1000);
+					$(wq_btn).attr('disabled', 'disabled');
+				} else {
+					if(str.indexOf('####') == "-1") {
+						popup.open(wq);
+						evalscript(wqXml(s));
+					} else {
+						ajax_show_message(s)
+					}
+				}
+			}).error(function() {
+				window.location.href = obj.attr('href');
+				popup.close();
+			});
+		}
+		return false;
+	});
+
+
+	$("#registersubmit").click(function() {
+		mobile_register_or_login_or_password_back('register');
+		return false;
+	});
+
+	$("#loginsubmit").click(function() {
+		mobile_register_or_login_or_password_back('login');
+		return false;
+	});
+
+	$("#password_submit").click(function() {
+		mobile_register_or_login_or_password_back('password');
+		return false;
+	});
+
+	$("#bindsubmit").click(function() {
+		mobile_register_or_login_or_password_back('bind');
+		return false;
+	});
+
+	$("#unbindsubmit").click(function() {
+		mobile_register_or_login_or_password_back('unbind');
+		return false;
+	});
+
+	$("#new_password_submit").click(function() {
+		popup.open('<img src="' + IMGDIR + '/imageloading.gif">');
+		var password = $("#sms_password").val();
+		var password2 = $("#sms_password2").val();
+		$.ajax({
+			url: "plugin.php?id=wq_smslogin&confirmsubmit=yes&mod=password&back=newpassword",
+			type: "POST",
+			data: "inajax=1&password=" + password + "&password2=" + password2 + "&formhash=" + formhash,
+			dataType: "html",
+			success: function(s) {
+				ajax_show_message(s);
+			},
+		});
+		return false;
+	});
+});
+
+function pass_phone_button_is_disabled(wq_btn, wq_input) {
+	var submitBtn = $(wq_btn);
+	$(wq_input).on('input', function() {
+		var mobile_tel = /^1[3|4|5|6|7|8|9][0-9]\d{8}$/;
+		var tel = this.value;
+		if(tel && mobile_tel.test(tel)) {
+			submitBtn.removeAttr('disabled');
+		} else {
+			submitBtn.prop('disabled', 'disabled');
+		}
+	});
+}
+
+
+
+function wq_smslogin_showwindow(id, url, type) {
+	popup.open('<img src="' + IMGDIR + '/imageloading.gif">');
+	type = type ? type : 'GET';
+	$.ajax({
+		type: type,
+		url: url,
+		data: {inajax: 1, handlekey: id},
+		dataType: 'html',
+	}).success(function(s) {
+		var wq = str = wqXml(s);
+		wq = wq_smslogin_replace_js(wq);
+		if(str.indexOf('####') == "-1") {
+			popup.open(wq);
+			evalscript(str);
+		} else {
+			ajax_show_message(s)
+		}
+	}).error(function(s, s1) {
+		window.location.href = url;
+		popup.close();
+	});
+	return false;
+}
+
+function wq_smslogin_replace_js(s) {
+	if(s.indexOf('<script') == -1)
+		return s;
+	var p = /<script[^\>]*?>([^\x00]*?)<\/script>/ig;
+	s = s.replace(p, '');
+	return s;
+}
+
+$(document).on('click', '#wqformdialog', function() {
+	popup.open('<img src="' + IMGDIR + '/imageloading.gif">');
+	var obj = $(this);
+	var formobj = $(this.form);
+	$.ajax({
+		type: 'POST',
+		url: formobj.attr('action') + '&handlekey=' + formobj.attr('id') + '&inajax=1',
+		data: formobj.serialize(),
+		dataType: 'html'
+	}).success(function(s) {
+		popup.close();
+		var wq, wqstr;
+		var wq = wqstr = wqXml(s);
+		wq = wq_smslogin_replace_js(wq);
+		var errcode = removeHTMLTag(wq);
+		var msg = by_flag_get_content_url(wq);
+		if(errcode == 1 || msg[0] == 1) {
+			curcount = count;
+			$(wq_btn).text(curcount + " " + seconds);
+			InterValObj = window.setInterval(SetRemainTime, 1000);
+			$(wq_btn).attr('disabled', 'disabled');
+		} else {
+			if(wqstr.indexOf('####') == "-1") {
+				popup.open(wq);
+				evalscript(wqstr);
+			} else {
+				ajax_show_message(s)
+			}
+
+		}
+
+	}).error(function() {
+		window.location.href = obj.attr('href');
+		popup.close();
+	});
+	return false;
+});
+
+function removeHTMLTag(str) {
+	str = str.replace(/<!--.*-->/g, '');
+	str = str.replace(/<\/?[^>]*>/g, '');
+	str = str.replace(/\s+/g, "");
+	str = str.replace(/[ | ]*\n/g, '\n');
+	str = str.replace(/&nbsp;/ig, '');
+	str = str.replace(/\n[\s| | ]*\r/g, '\n');
+	str = str.replace(/#/g, '');
+	return str;
+}
+
+function SetRemainTime() {
+	if(curcount == 0) {
+		window.clearInterval(InterValObj);
+		$(wq_btn).text(new_send);
+		$(wq_btn).removeAttr('disabled');
+	}
+	else {
+		curcount--;
+		$(wq_btn).text(curcount + " " + seconds);
+	}
+}
+
+function mobile_register_or_login_or_password_back(code_type) {
+	popup.open('<img src="' + IMGDIR + '/imageloading.gif">');
+	var agreebbrule = email = '';
+	if(code_type == 'register') {
+
+		var mobile = $("#mobile_num").val();
+		var verfiy = $("#verify").val();
+		var passwd = $("#password").val();
+		var passwd_2 = $("#password_2").val();
+		var username = $("#username").val();
+		if($("#email").length > 0) {
+			var email = "&email=" + $("#email").val();
+		}
+		var backurl = "&referer=" + referer;
+		if($('#agreebbrule').length > 0) {
+			if($('#agreebbrule').is(":checked") === false) {
+				popup.open("<div class=\"ass_fl\"><dt id=\"messagetext\"><p>&#x60A8;&#x5FC5;&#x987B;&#x540C;&#x610F;&#x670D;&#x52A1;&#x6761;&#x6B3E;&#x540E;&#x624D;&#x80FD;&#x6CE8;&#x518C;</p></dt></div>");
+				setTimeout(function() {
+					popup.close();
+				}, '1500');
+				return false;
+			}
+			agreebbrule = "&agreebbrule=" + ($('#agreebbrule').is(":checked") === true ? 1 : 0);
+		}
+	}
+	if(code_type == 'login') {
+		var mobile = $("#mobile_num1").val();
+		if(mobile_password_lgoin == 0) {
+			var verfiy = $("#verify1").val();
+		} else {
+			var password = $("#phone_password").val();
+			var password = password + "&flag=yes";
+		}
+		var backurl = "&referer=" + referer;
+	}
+	if(code_type == 'password') {
+		var mobile = $("#password_mobile_num").val();
+		var verfiy = $("#password_verify").val();
+	}
+
+	if(code_type == 'bind') {
+		var mobile = $("#bind_mobile_num").val();
+		var verfiy = $("#bind_verify").val();
+	}
+
+	if(code_type == 'unbind') {
+		var mobile = $("#unbind_mobile_num").val();
+		var verfiy = $("#unbind_verify").val();
+		var passwd = $("#unbind_passwd").val();
+	}
+
+	$.ajax({
+		url: "plugin.php?id=wq_smslogin&allsubmit=yes&mod=" + code_type,
+		type: "POST",
+		data: "inajax=1&phone=" + mobile + "&verfiy=" + verfiy + "&username=" + username + "&passwd=" + passwd + "&passwd_2=" + passwd_2 + "&formhash=" + formhash + "&avBu4z=" + password + backurl + agreebbrule + email,
+		dataType: "html",
+	}).success(function(s) {
+		ajax_show_message(s)
+	});
+
+}
+
+function wqXml(str) {
+	var start = str.indexOf('CDATA') + 6, end = str.indexOf(']]></root>');
+	var wq = str.substring(start, end);
+	return wq;
+}

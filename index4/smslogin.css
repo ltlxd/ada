@@ -1,0 +1,113 @@
+/* common */
+* { word-wrap: break-word; }
+ul,ol,li,span,p,form,h1,h2,h3,h4,h5,h6,dl,dt,dd { margin: 0; padding: 0; border: 0; z-index:inherit; }
+img,a img { border:0; margin:0; padding:0; }
+ul,ol,li { list-style:none; }
+* { margin:0; padding:0; }
+.wqcolor{ color: #eb413d;}
+a.wqcolor:link, a.wqcolor:visited, a.wqcolor:hover { color:#eb413d; text-decoration:none;}
+.wq_f20{ font-size:20px !important;}
+.wq_f22{ font-size:22px !important;}
+.wqm_right10{ margin-right: 10px;}
+.wqm_top10{ margin-top: 10px;}
+.wqp_left0{padding-left: 0px !important;}
+.wqwidth100{ width: 100% !important;}
+.wqheight44{ height: 44px;}
+.wqbg_color{ background: #eb413d;}
+.wq_btn:disabled { background: #dedede; color: #fff;}
+.tip{ background: #fff; padding:24px 32px; border-radius: 5px;}
+.retina .wqb_all{ border-bottom: none !important;background-image:linear-gradient(180deg, #e5e5e5, #e5e5e5 50%, transparent 50%),linear-gradient(270deg, #e5e5e5, #e5e5e5 50%, transparent 50%), linear-gradient(0deg, #e5e5e5, #e5e5e5 50%, transparent 50%), linear-gradient(90deg, #e5e5e5, #e5e5e5 50%, transparent 50%); background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%; background-repeat: no-repeat; background-position: top, right top,  bottom, left top;}
+.retina .wqb_bottom{ border-bottom: none !important;background-image:linear-gradient(180deg, #e5e5e5, #e5e5e5 50%, transparent 50%),linear-gradient(270deg, #e5e5e5, #e5e5e5 50%, transparent 50%), linear-gradient(0deg, #e5e5e5, #e5e5e5 50%, transparent 50%), linear-gradient(90deg, #e5e5e5, #e5e5e5 50%, transparent 50%); background-size: 100% 0px,0px 100% ,100% 1px, 0px 100%; background-repeat: no-repeat; background-position: top, right top,  bottom, left top;}
+.wqlogin_register input,.wqlogin_register select,.wqlogin_register textarea,.wqlogin_register button { font-size:16px ;font-family:  Microsoft YaHei, Helvetica, sans-serif; }
+.wqlogin_register input, .wqlogin_register textarea, .wqlogin_register select, .wqlogin_register button { outline: 0; resize: none;}
+.wqpic_code input,.wqpic_code select,.wqpic_code textarea,.wqpic_code button  { font-size:16px ;font-family:  Microsoft YaHei, Helvetica, sans-serif;  }
+.wqpic_code input,.wqpic_code select,.wqpic_code textarea,.wqpic_code button { outline: 0; resize: none;}
+/*header*/
+.wqheader{ line-height:40px; height:40px; text-align:center; padding-top:4px; position:fixed;width:100%; top:0px; z-index: 2; overflow: hidden; font-family: Microsoft YaHei}
+.wqheader .wqlogo{ height:36px;}
+.wqheader .wqmenu{ position:absolute; top:4px; left:0px; color:#fff; width:44px; text-align:left; text-align: center}
+.wqheader .wqshare{ position:absolute; top:0px; right:0px; color:#fff; width:44px; text-align:right; text-align: center}
+.wqheader .wqmyfollow{ position:absolute; top:4px; right:0px; color:#fff; width:44px; text-align:right; text-align: center}
+.wqheader .wqcancel{ position:absolute; top:2px; left:0px;padding:0px 12px; color:#fff;  text-align: center}
+.wqheader .wqpublish{ position:absolute; top:2px; right:0px;padding:0px 12px; color:#fff;text-align: center; border: none; line-height: 40px; font-size: 16px;}
+.wqheader_return{line-height:44px;height:44px; color: #fff; padding:0px 12px; position: fixed; width: 100%;z-index:2; text-align: center;}
+.wqheader_return a{ color: #fff; text-decoration: none}
+.wqpost_title{ width: 50%; display: inline-block; line-height: 36px;height: 36px;color: #fff; font-size: 18px;}
+
+.wqheader_lump{ position: fixed; top: 0px; left: 0px; z-index: 2; width: 100%;}
+.wqheader_div { text-align: center; color: #000; color: #fff; font-size: 20px; line-height: 44px; height: 44px; overflow: hidden; position: relative; padding: 0px 74px; white-space: nowrap; display: block; -o-text-overflow: ellipsis; text-overflow: ellipsis;}
+.wqheader_div .wqheader_left{ position: absolute; left: 10px; line-height: 44px;width:34px; text-align: left; color: #fff; font-size: 18px; text-decoration: none;}
+.wqheader_div .wqheader_right{ position: absolute; right: 0px; line-height: 44px;  text-align: right; color: #fff; text-decoration: none;}
+/**/
+.wqlogin_register{ padding:0px 12px; font-family: Microsoft YaHei;}
+.wqlogin ul li{ border-bottom: 1px solid #f0f0f0; line-height: 34px; padding: 5px 0; position: relative;}
+.wqlogin ul li input{ border: none;height: 26px; width: 90%; padding-left: 10%; font-size: 16px; font-family: Microsoft YaHei }
+.wqlogin ul li input.wqpasswoed{ width: 70%;}
+.wqlogin ul li i{ position: absolute; color: #888;}
+.wqlogin ul li .wqretrieve_password{font-size: 14px; color: #888;text-align: right;}
+.wqlogin ul li .wqretrieve_password a{ color: #888;}
+.wqcode{ float: right}
+.wqlogin ul li input.wqphone{ width: 50%;}
+.wqlogin ul li.modify_name{}
+.wqlogin ul li.modify_name a{ text-decoration: none; color: #333; display: block;}
+.wqlogin ul li.modify_name em{ float: right;}
+.wqcode button{ font-size: 16px;color: #ff0600;text-align: center; background: none; border: 1px solid #ff0600; padding: 2px 12px; line-height: 22px; border-radius: 20px; font-family: Microsoft YaHei}
+.wqcode a{ color: #ff0600; display: block;}
+.wqccode_img{height: 30px; width: 25% !important;float: right; margin-top: 2px;}
+.wqlogin ul li input.wqccode{ width: 70%;}
+.wq_btn2:disabled {color:#888; border:1px solid #888;}
+.wq_button{ border: none; color: #fff; width: 100%; line-height: 44px; border-radius: 5px; font-size: 16px; font-family: Microsoft YaHei}
+.wqregister_account{line-height: 40px;height: 40px;}
+.wqregister_account .wq_liregister{ text-align: left}
+.wqregister_account a{ display: inline-block;}
+.wqfloat_right{float: right}
+
+
+
+.wqpic_code{position: fixed;left:5%; width:90%;border-radius:5px; background: #fff; overflow: hidden; z-index: 999; top:120px;}
+.wqpic_code h3{ font-weight: normal; padding: 10px; line-height: 34px;}
+.wqpic_code .wq_pic_code_icon{ padding: 0px 10px;}
+.wqpic_code .wq_pic_code_icon .wqborder{  width: 50% !important;border:1px solid #f0f0f0; display: inline-block;vertical-align: top; margin-right: 10px;}
+.wqpic_code .wq_pic_code_icon input{ width: 50% !important; border:none; height: 30px; padding: 2px 2%;vertical-align:top;}
+/*.wqpic_code .wq_pic_code_icon img{height: 40px; width: 32% !important;float: right; margin-top: 2px;}*/
+.wqpic_code .wq_pic_code_icon .wqname_input{ border: 1px solid #f0f0f0;    height: 36px;}
+.wqpic_code .wq_pic_code_icon .wqname_input input{ border: none;width: 96%!important;}
+.wqpic_code .wq_pic_code_btn{ border-top: 1px solid #f0f0f0; width: 100%; margin-top:20px; line-height: 44px;}
+.wqpic_code .wq_pic_code_btn button{ width:48%; background:none; border: none;  text-align: center;line-height: 44px;}
+.wqpic_code .wq_pic_code_btn button.wqborder_right{ border-right: 1px solid #f0f0f0;}
+.wqpassword_step{ line-height: 44px;height: 44px; border-bottom: 1px solid #f0f0f0; text-align: center; font-family: Microsoft YaHei; font-size: 16px;}
+.wqpassword_step ul li{display: inline-block; position: relative;}
+.wqpassword_step ul li i{ font-size: 14px;margin-left: .6rem;}
+.wqlogin_switch{ height: 46px; overflow: hidden; background: #fff;font-size: 16px;}
+.wqlogin_switch li{ float: left; text-align: center; line-height: 45px; width: 50%; border-bottom: 1px solid #e5e5e5;}
+.wqlogin_switch li a{ display: block;text-decoration: none; color: #333}
+.wqlogin_switch li.a a{border-bottom: 1px solid #eb413d; color:#eb413d}
+.wqpic_code_pc{  top: 320px;width: 500px;margin-left: -250px;border: 5px solid #dedede;}
+/*----- footer -----*/
+.footer { text-align:center; line-height:2em; color:#A5A5A5; padding:10px 0 0 0; font:14px/1.6  Microsoft YaHei, Helvetica, sans-serif; margin-top: 20px; }
+.footer a { margin:0 6px; color:#A5A5A5; text-decoration: none; }
+
+.bd_smslogin{ background: #fff;text-align: center; font-size: 16px; position: relative; width: 300px; position: fixed; left: 5%; width: 90%; border-radius: 5px;background: #fff;overflow: hidden; z-index: 999; top: 120px;}
+.c_jt{color: #d4d4d4;}
+
+.bd_smslogin .rfm .px{ width: 90% !important; border: 1px solid #f0f0f0; text-indent: 0.5em;padding: 0px; line-height: 40px;margin-right:0px;}
+.bd_smslogin .flb{ font-size: 16px; line-height: 44px;border-bottom: 1px solid #f0f0f0;font-weight: normal;  padding: 0px 10px;}
+.weixin_close{width: 40px; height: 40px; overflow: hidden; display: block; position: absolute;right: 0px;top: 0px;line-height: 40px;}
+.bd_smslogin .rfm{ margin-top: 10px !important;padding:0px 20px;}
+.bd_smslogin .rfm p{ line-height: 40px;overflow: hidden;text-align: center;height: 42px;}
+.bd_smslogin .rfm .wx_button{ font-size: 16px;  background: #01a9e9;padding:0px 20px;height: 36px;color: #FFF; border: 0; border-radius: 3px;-webkit-border-radius: 3px; -moz-border-radius: 3px;}
+.bd_smslogin .jcbd{ line-height: 30px; margin-bottom: 10px;}
+.bd_smslogin .rfm p.wqinput{ border: 1px solid #f0f0f0;line-height: 40px; text-align: left; width: 80%; margin: auto;}
+.bd_smslogin .rfm p.wqinput input{ border: none;text-indent: 0.4em; margin: 1px; width: 100%; height: 100%;}
+.ass_fl{ background: #fff; margin: 0 auto; text-align: center; width: 300px; font-size: 14px; padding:20px 0px; border-radius:5px;}
+.wqreturn_name_login{width: 100%; position: fixed; bottom:0px; line-height: 44px; border-top: 1px solid #f0f0f0; text-align: center;}
+.wqreturn_name_login a{ text-decoration: none; color: #888; display: block;}
+
+.wq_service_terms{ padding:0 10px;}
+.wq_service_terms .wq_con{margin-top: -10px; line-height: 28px; color: #888;}
+.wq_service_terms .wqchoice .wqagree{background-color: #ffc332; width: 48%; margin-right: 1%; border-radius: 3px; line-height: 44px; border: none; color: #fff; text-align: center;font-size:16px;}
+.wq_service_terms .wqchoice .wqdisagree{background-color: #fff; width: 48%; border-radius: 3px; line-height: 42px; color: #ffc332; border: 1px solid #ffc332; text-align: center;font-size:16px;}
+
+.wqagreebbrule{ margin-top: 10px; font-size: 16px; color: #888;line-height: 24px;}
+.wqagreebbrule a{ color: #0093dd}
+.wqpc{vertical-align: middle;margin: 0 5px 1px 0;padding: 0; width:16px;height:16px;}
