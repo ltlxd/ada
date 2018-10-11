@@ -1,5 +1,0 @@
-function wqXml(str) {
-    var start = str.indexOf('CDATA') + 6, end = str.indexOf(']]></root>');
-    var wq = str.substring(start, end);
-    return wq;
-}
